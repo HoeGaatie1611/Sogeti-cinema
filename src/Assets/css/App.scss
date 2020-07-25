@@ -1,15 +1,12 @@
 //GLOBAL VARS
 $red: #D81F26;
-$background: rgba(20, 20, 20, 0.7);
+$background: #141414;
 $black: #000000;
 $grey: #f5f5f1;
 $white: #ffffff;
 
-@import 'https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900';
-
-
-
-body {
+//Global elements
+html {
   color: $white;
   background-color: $background;
 }
@@ -21,6 +18,30 @@ img {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+
+.RoundButton {
+  margin: 0 1em;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: $white;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  border: 2px solid $red;
+  border-radius: 3em;
+  font-size: 1em;
+  font-weight: 600;
+  transition: border .125s ease, background .125s ease;
+
+  &:hover {
+	background: $red;
+
+  }
+
 }
 
 /*Header, footer and common components*/
@@ -85,7 +106,7 @@ img {
   }
 }
 
-.Search {
+.Header-Search {
   flex: 1 1 auto;
   height: 100%;
   display: flex;
@@ -105,7 +126,7 @@ img {
 	width: 80%;
 	background: transparent;
 	color: $white;
-	border: 2px solid rgba($white, 1);
+	border: 2px solid rgba($white, .5);
 	outline: none;
 	border-radius: 5em;
 	padding: 0 5%;
@@ -150,15 +171,16 @@ img {
 }
 
 .Hero {
-  margin-top: 2vh;
+  margin: 5vh 0;
   display: flex;
   justify-content: center;
   height: 60vh;
 
+
   .HeroContainer {
 	display: flex;
 	flex-direction: row;
-	width: 80%;
+	width: 85%;
 
 	.TextContainer {
 	  display: flex;
@@ -166,30 +188,41 @@ img {
 	  justify-content: center;
 	  text-align: center;
 	  align-items: center;
-	  width: 70%;
+	  max-width: 70%;
+
 	  .HeroLogo {
 		height: 40%;
+
+		img {
+		  max-width: 90%;
+		}
 	  }
+
 	  .Title {
 		display: flex;
 		align-items: center;
 		height: 20%;
+
 		h1 {
 		  font: 'Lato', sans-serif;
 		  color: $white;
 		  font-size: 3em;
 		}
 	  }
+
 	  .Info {
 		height: 25%;
-		font-size: 2em;
+		font-size: 1.75vw;
 	  }
+
 	  .Buttons {
 		height: 15%;
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+
 		a {
-		  margin-right: 2em;
+		  margin: 0 1em;
 		  cursor: pointer;
 		  background: transparent;
 		  display: flex;
@@ -198,7 +231,7 @@ img {
 		  text-decoration: none;
 		  color: $white;
 		  padding: 10px 40px;
-		  height: 75%;
+		  height: 60%;
 		  box-sizing: border-box;
 		  border: 2px solid $red;
 		  border-radius: 3em;
@@ -217,7 +250,9 @@ img {
 	.PhotoContainer {
 	  display: flex;
 	  justify-content: center;
-	  width: 30%;
+	  flex: 0 0 auto;
+	  max-width: 40%;
+
 	  img {
 		height: 100%;
 	  }
@@ -231,13 +266,188 @@ img {
   justify-content: center;
 
   div {
-	display: flex;
-	height: 400px;
-	width: 90vw;
+	.MovieContainerHeader {
+	  display: flex;
+	  flex-direction: row;
+	  align-items: baseline;
+	  font-size: 1.5em;
+
+	  a {
+		margin: 0 1em;
+		cursor: pointer;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		color: $white;
+		padding: 5px 30px;
+		box-sizing: border-box;
+		border: 2px solid $red;
+		border-radius: 3em;
+		font-size: 1em;
+		font-weight: 600;
+		transition: border .125s ease, background .125s ease;
+
+		&:hover {
+		  background: $red;
+
+		}
+	  }
+	}
+
+	.MovieContainerBody {
+	  display: flex;
+	  width: 90vw;
+
+	  .MovieDetails {
+		width: 25%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+
+		.MovieTitle {
+		  a {
+			margin: 0 1em;
+			cursor: pointer;
+			background: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: $white;
+			padding: 10px 30px;
+			box-sizing: border-box;
+			border: 2px solid $red;
+			border-radius: 3em;
+			font-size: 1em;
+			font-weight: 600;
+			transition: border .125s ease, background .125s ease;
+
+			&:hover {
+			  background: $red;
+
+			}
+		  }
+		}
+	  }
+	}
   }
 }
 
-.MovieDetails {
-  width: 33%;
-  height: 100%;
+
+//Search page
+.SearchPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  form {
+	width: 100%;
+	height: 8vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2vh;
+  }
+
+  input {
+	text-align: center;
+	font-weight: 300;
+	font-size: 20px;
+	height: 75%;
+	width: 80%;
+	background: transparent;
+	color: $white;
+	border: 2px solid rgba($white, .5);
+	outline: none;
+	border-radius: 5em;
+	transition: border .25s ease, width .125s ease .125s;
+
+	&:focus {
+	  border: 2px solid $red;
+	  width: 95%;
+	}
+  }
+
+  .RoundButton {
+	width: 35%;
+  }
+}
+
+.SearchResults {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SearchResultContainer {
+  margin-top: 5vh;
+  display: flex;
+  width: 85%;
+
+
+  .SearchResult {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+
+	.SearchResult_Poster {
+	  display: flex;
+	  justify-content: center;
+	  width: 30%;
+
+	  img {
+		object-fit: contain;
+		width: 90%;
+		height: 90%;
+	  }
+	}
+
+	.SearchResult_Information {
+	  width: 70%;
+	  display: flex;
+	  flex-direction: column;
+
+	  .SearchResult_Title {
+		height: 15%;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		text-decoration: underline;
+	  }
+
+	  .SearchResult_Details {
+		height: 80%;
+		display: flex;
+		flex-direction: row;
+		h2 {
+		  font-size: 1.5vw;
+		}
+
+		.SearchResult_Details_List {
+		  width: 50%;
+		  padding-right: 2vw;
+
+		  ul {
+			padding-left: 0;
+			list-style-type: none;
+			font-size: 1vw;
+			line-height: 2;
+		  }
+		}
+
+		.SearchResult_Details_Description {
+		  width: 50%;
+		  p {
+			font-size: 1vw;
+
+		  }
+		}
+	  }
+	}
+  }
 }

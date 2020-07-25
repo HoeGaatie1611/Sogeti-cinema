@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./Views/home";
-import Test from "./Views/test";
+import Search from "./Views/Search";
 
 class App extends React.Component {
 	constructor(props) {
@@ -40,8 +40,8 @@ class App extends React.Component {
 						<Route exact path="/">
 							<Home state={this.state} changeGlobalState={this.changeGlobalState}/>
 						</Route>
-						<Route exact path="/test">
-							<Test state={this.state} changeGlobalState={this.changeGlobalState}/>
+						<Route exact path="/Search">
+							<Search state={this.state} changeGlobalState={this.changeGlobalState}/>
 						</Route>
 					</Switch>
 				</div>
@@ -67,8 +67,8 @@ class AppHeader extends React.Component {
 						</ul>
 					</nav>
 				</div>
-				<div className="Search">
-					<form onSubmit={this.props.onSubmit}>
+				<div className="Header-Search">
+					<form>
 						<input type="search" placeholder="Search for a movie..."/>
 					</form>
 				</div>
