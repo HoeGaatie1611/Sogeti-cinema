@@ -105,6 +105,31 @@ class SearchBar extends React.Component {
 class SearchResult extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			fullPlot: null,
+			plot: null
+		}
+	}
+
+	componentDidMount() {
+		let fullPlot = this.props.data.Plot;
+		if (fullPlot.length > 200) {
+			this.setState({
+				plot: <>{fullPlot.slice(0, 200)} <a onClick={this.extendPlot}>Read more...</a></>,
+				fullPlot: fullPlot
+			});
+		} else {
+			this.setState({
+				plot: <>{fullPlot}</>,
+				fullPlot: fullPlot
+			});
+		}
+	}
+
+	extendPlot = () => {
+		this.setState({
+			plot: this.state.fullPlot
+		})
 	}
 
 	render() {
@@ -142,7 +167,7 @@ class SearchResult extends React.Component {
 							<div className="SearchResult_Details_Description">
 								<h2><b>Movie Plot:</b></h2>
 								<p>
-									{this.props.data.Plot}
+									{this.state.plot}
 								</p>
 							</div>
 						</div>

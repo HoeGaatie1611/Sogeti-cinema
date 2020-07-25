@@ -3,9 +3,9 @@ import logo from './Assets/img/logo.svg';
 import './Assets/css/App.scss';
 
 import {
-	BrowserRouter as Router,
 	Switch,
 	Route,
+	withRouter,
 	Redirect
 } from "react-router-dom";
 
@@ -21,9 +21,9 @@ class App extends React.Component {
 	}
 
 	accountActions = (action) => {
-		if(action === "signIn")
+		if (action === "signIn")
 			alert("User wants to sign in");
-		else if(action === "signUp")
+		else if (action === "signUp")
 			alert("User wants to sign up");
 	}
 
@@ -33,9 +33,9 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Router>
+			// <Router>
 				<div className="App">
-					<AppHeader accountActions={this.accountActions} />
+					<AppHeader {... this.props} accountActions={this.accountActions}/>
 					<Switch>
 						<Route exact path="/">
 							<Home state={this.state} changeGlobalState={this.changeGlobalState}/>
@@ -45,22 +45,32 @@ class App extends React.Component {
 						</Route>
 					</Switch>
 				</div>
-			</Router>
+			// </Router>
 		);
 	}
 }
 
 class AppHeader extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	redirect = (e) => {
+		if(e.target.getAttribute('to')) {
+			this.props.history.push(e.target.getAttribute('to'));
+		}
+	}
+
 	render() {
 		return (
 			<header className="App-header">
 				<div className="Logo">
-					<img src={logo} className="SVGlogo"/>
+					<img to="/" onClick={this.redirect} src={logo} className="SVGlogo"/>
 				</div>
 				<div className="Navigation">
 					<nav>
 						<ul>
-							<li>Movies</li>
+							<li to="/search" onClick={this.redirect} >Search</li>
 							<li>Upcoming movies</li>
 							<li>Events</li>
 							<li>Information</li>
@@ -73,7 +83,7 @@ class AppHeader extends React.Component {
 					</form>
 				</div>
 				<div className="User">
-					<a onClick={this.props.accountActions.bind(this, "signIn")} >Sign in</a>
+					<a onClick={this.props.accountActions.bind(this, "signIn")}>Sign in</a>
 					<a onClick={this.props.accountActions.bind(this, "signUp")}>Sign up</a>
 				</div>
 			</header>
@@ -81,4 +91,4 @@ class AppHeader extends React.Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
