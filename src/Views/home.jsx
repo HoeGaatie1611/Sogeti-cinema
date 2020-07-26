@@ -134,6 +134,8 @@ class MovieSection extends React.Component {
 		console.log(this.props.category);
 	}
 
+
+
 	render() {
 		return (
 			<div className="MovieContainer">

@@ -377,6 +377,10 @@ img {
 	width: 30%;
 	border: $white 2px solid;
 
+	&:hover {
+	  color: $black;
+	  background: $grey;
+	}
   }
 }
 
@@ -417,8 +421,6 @@ img {
 	  .SearchResult_Title {
 		height: 15%;
 		display: flex;
-		justify-content: center;
-		text-align: center;
 		text-decoration: underline;
 	  }
 
@@ -426,6 +428,7 @@ img {
 		height: 80%;
 		display: flex;
 		flex-direction: row;
+
 		h2 {
 		  font-size: 1.5vw;
 		}
@@ -442,10 +445,42 @@ img {
 		  }
 		}
 
-		.SearchResult_Details_Description {
+
+		.SearchResult_Details_Right {
 		  width: 50%;
-		  p {
-			font-size: 1vw;
+
+		  .SearchResult_Details_Description {
+			display: flex;
+			flex-direction: column;
+
+			p {
+			  font-size: 1vw;
+
+			  a {
+				color: $red;
+				cursor: pointer;
+			  }
+			}
+		  }
+		}
+
+		.SearchResults_ButtonBox {
+		  display: flex;
+
+
+		  a {
+			margin-top: 2vh;
+			margin-left: 0;
+			width: 40%;
+
+			&:first-child {
+			  border: 2px solid $grey;
+
+			  &:hover {
+				color: $black;
+				background: $grey;
+			  }
+			}
 		  }
 		}
 	  }

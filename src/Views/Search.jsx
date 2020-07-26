@@ -61,12 +61,6 @@ class SearchBar extends React.Component {
 		});
 	}
 
-	_handleKeyDown = (e) => {
-		if (e.key === 'Enter') {
-			console.log('do validate');
-		}
-	}
-
 	getSearchResults = async (e) => {
 		e.preventDefault();
 		const results = await searchForMovies(this.state.searchInput);
@@ -76,10 +70,14 @@ class SearchBar extends React.Component {
 			alert("Something went wrong. Please check your input");
 		else {
 			let progress = 10;
-
 			this.props.setState("progress", progress)
-			for (let i = 0; i < results.length; i++) {
-				this.props.setState("progress", progress += (90 / results.length))
+
+			let length = results.length;
+			if(length > 5)
+				length = 5;
+
+			for (let i = 0; i < length; i++) {
+				this.props.setState("progress", progress += (90 / length))
 				const searchResult = await searchByID(results[i].imdbID, "full")
 				searchResults.push(<SearchResult data={searchResult} listKey={searchResult.imdbID}/>);
 			}
@@ -92,7 +90,7 @@ class SearchBar extends React.Component {
 		return (
 			<div className="SearchPage">
 				<form onSubmit={this.getSearchResults}>
-					<input type="text" value={this.state.searchInput} onKeyDown={this._handleKeyDown}
+					<input type="text" value={this.state.searchInput}
 						   onChange={this.handleChange}
 						   placeholder="Search for a movie..."/>
 				</form>
@@ -111,7 +109,17 @@ class SearchResult extends React.Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if(prevProps.data.Plot !== this.props.data.Plot) {
+			this.setPlot();
+		}
+	}
+
 	componentDidMount() {
+		this.setPlot();
+	}
+
+	setPlot = () => {
 		let fullPlot = this.props.data.Plot;
 		if (fullPlot.length > 200) {
 			this.setState({
@@ -139,6 +147,12 @@ class SearchResult extends React.Component {
 		} else
 			poster = <img src="https://sd.keepcalms.com/i/keep-calm-poster-not-found.png"/>
 
+		let metascore = this.props.data.Metascore;
+		console.log(this.props.data.Metascore)
+		if (this.props.data.Metascore !== "N/A")
+			metascore = `${this.props.data.Metascore}%`;
+
+
 		return (
 			<div className="SearchResultContainer">
 				<div className="SearchResult">
@@ -160,19 +174,22 @@ class SearchResult extends React.Component {
 									<li key="Genre"><b>Genre:</b> {this.props.data.Genre}</li>
 									<li key="Director"><b>Director:</b> {this.props.data.Director}</li>
 									<li key="Actors"><b>Actors:</b> {this.props.data.Actors}</li>
-									<li key="Rating"><b>Metascore:</b> {this.props.data.Metascore}%</li>
+									<li key="Rating"><b>Metascore:</b> {metascore}</li>
 									<li key="Awards"><b>Awards:</b> {this.props.data.Awards}.</li>
 								</ul>
 							</div>
+							<div className="SearchResult_Details_Right">
 							<div className="SearchResult_Details_Description">
 								<h2><b>Movie Plot:</b></h2>
 								<p>
 									{this.state.plot}
 								</p>
 							</div>
-						</div>
-						<div className="SearchResults_ButtonBox">
-							<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`} className="RoundButton"> More information </a>
+							<div className="SearchResults_ButtonBox">
+								<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`} className="RoundButton"> More information </a>
+								<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`} className="RoundButton"> IMDB Page </a>
+							</div>
+							</div>
 						</div>
 					</div>
 				</div>
