@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './Assets/img/logo.svg';
 import './Assets/css/App.scss';
+import './Assets/css/Header.scss';
+import './Assets/css/Home.scss';
+import './Assets/css/Search.scss';
 
 import {
 	Switch,
