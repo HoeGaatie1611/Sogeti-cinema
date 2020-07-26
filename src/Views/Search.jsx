@@ -73,7 +73,7 @@ class SearchBar extends React.Component {
 			this.props.setState("progress", progress)
 
 			let length = results.length;
-			if(length > 5)
+			if (length > 5)
 				length = 5;
 
 			for (let i = 0; i < length; i++) {
@@ -110,7 +110,7 @@ class SearchResult extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if(prevProps.data.Plot !== this.props.data.Plot) {
+		if (prevProps.data.Plot !== this.props.data.Plot) {
 			this.setPlot();
 		}
 	}
@@ -148,7 +148,6 @@ class SearchResult extends React.Component {
 			poster = <img src="https://sd.keepcalms.com/i/keep-calm-poster-not-found.png"/>
 
 		let metascore = this.props.data.Metascore;
-		console.log(this.props.data.Metascore)
 		if (this.props.data.Metascore !== "N/A")
 			metascore = `${this.props.data.Metascore}%`;
 
@@ -172,6 +171,7 @@ class SearchResult extends React.Component {
 									<li key="Release"><b>Release:</b> {this.props.data.Released}</li>
 									<li key="Runtime"><b>Runtime:</b> {this.props.data.Runtime}</li>
 									<li key="Genre"><b>Genre:</b> {this.props.data.Genre}</li>
+									<li key="Type"><b>Type:</b> {this.props.data.Type}</li>
 									<li key="Director"><b>Director:</b> {this.props.data.Director}</li>
 									<li key="Actors"><b>Actors:</b> {this.props.data.Actors}</li>
 									<li key="Rating"><b>Metascore:</b> {metascore}</li>
@@ -179,16 +179,18 @@ class SearchResult extends React.Component {
 								</ul>
 							</div>
 							<div className="SearchResult_Details_Right">
-							<div className="SearchResult_Details_Description">
-								<h2><b>Movie Plot:</b></h2>
-								<p>
-									{this.state.plot}
-								</p>
-							</div>
-							<div className="SearchResults_ButtonBox">
-								<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`} className="RoundButton"> More information </a>
-								<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`} className="RoundButton"> IMDB Page </a>
-							</div>
+								<div className="SearchResult_Details_Description">
+									<h2><b>Movie Plot:</b></h2>
+									<p>
+										{this.state.plot}
+									</p>
+								</div>
+								<div className="SearchResults_ButtonBox">
+									<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`}
+									   className="RoundButton"> More information </a>
+									<a target="_blank" href={`https://www.imdb.com/title/${this.props.data.imdbID}/`}
+									   className="RoundButton"> IMDB Page </a>
+								</div>
 							</div>
 						</div>
 					</div>

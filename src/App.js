@@ -8,11 +8,10 @@ import './Assets/css/Search.scss';
 import {
 	Switch,
 	Route,
-	withRouter,
-	Redirect
+	withRouter
 } from "react-router-dom";
 
-import Home from "./Views/home";
+import Home from "./Views/Home";
 import Search from "./Views/Search";
 
 class App extends React.Component {
@@ -37,17 +36,17 @@ class App extends React.Component {
 	render() {
 		return (
 			// <Router>
-				<div className="App">
-					<AppHeader {... this.props} accountActions={this.accountActions}/>
-					<Switch>
-						<Route exact path="/">
-							<Home state={this.state} changeGlobalState={this.changeGlobalState}/>
-						</Route>
-						<Route exact path="/Search">
-							<Search state={this.state} changeGlobalState={this.changeGlobalState}/>
-						</Route>
-					</Switch>
-				</div>
+			<div className="App">
+				<AppHeader {...this.props} accountActions={this.accountActions}/>
+				<Switch>
+					<Route exact path="/">
+						<Home state={this.state} changeGlobalState={this.changeGlobalState}/>
+					</Route>
+					<Route exact path="/Search">
+						<Search state={this.state} changeGlobalState={this.changeGlobalState}/>
+					</Route>
+				</Switch>
+			</div>
 			// </Router>
 		);
 	}
@@ -59,7 +58,7 @@ class AppHeader extends React.Component {
 	}
 
 	redirect = (e) => {
-		if(e.target.getAttribute('to')) {
+		if (e.target.getAttribute('to')) {
 			this.props.history.push(e.target.getAttribute('to'));
 		}
 	}
@@ -73,7 +72,7 @@ class AppHeader extends React.Component {
 				<div className="Navigation">
 					<nav>
 						<ul>
-							<li to="/search" onClick={this.redirect} >Search</li>
+							<li to="/search" onClick={this.redirect}>Search</li>
 							<li>Upcoming movies</li>
 							<li>Events</li>
 							<li>Information</li>

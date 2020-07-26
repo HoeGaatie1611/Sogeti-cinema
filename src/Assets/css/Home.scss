@@ -39,18 +39,26 @@ $white: #ffffff;
 	  .Title {
 		display: flex;
 		align-items: center;
-		height: 20%;
+		height: 15%;
 
 		h1 {
-		  font: 'Lato', sans-serif; //todo mooi fontje maken :D
 		  color: $white;
 		  font-size: 3em;
 		}
 	  }
 
+	  .Awards {
+		display: flex;
+		align-items: center;
+		height: 5%;
+	  }
+
 	  .Info {
 		height: 25%;
-		font-size: 1.75vw;
+		font-size: 1.6vw;
+		display: flex;
+		align-items: flex-end;
+		padding-bottom: 1vh;
 	  }
 
 	  .Buttons {
@@ -79,7 +87,6 @@ $white: #ffffff;
 
 		  &:hover {
 			background: $red;
-
 		  }
 		}
 	  }

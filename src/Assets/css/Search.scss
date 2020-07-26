@@ -86,6 +86,7 @@ $white: #ffffff;
 	  width: 100%;
 	  display: flex;
 	  flex-direction: column;
+	  padding: 2vw;
 
 	  .SearchResult_Title {
 		height: 15%;
@@ -167,95 +168,41 @@ $white: #ffffff;
   }
 }
 
-@media (min-width:961px) {
+@media (min-width: 961px) {
   .SearchPage {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-
-	form {
-	  width: 100%;
-	  height: 8vh;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  margin: 2vh;
-	}
-
 	input {
-	  text-align: center;
-	  font-weight: 300;
 	  font-size: 20px;
-	  height: 75%;
 	  width: 50%;
-	  background: transparent;
-	  color: $white;
-	  border: 2px solid rgba($white, .5);
-	  outline: none;
-	  border-radius: 5em;
-	  transition: border .25s ease, width .125s ease .125s;
-
-	  &:focus {
-		border: 2px solid $red;
-		width: 95%;
-	  }
 	}
 
 	.RoundButton {
 	  width: 30%;
-	  border: $white 2px solid;
-
-	  &:hover {
-		color: $black;
-		background: $grey;
-	  }
 	}
   }
 
-  .SearchResults {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-  }
-
   .SearchResultContainer {
-	margin-top: 5vh;
-	display: flex;
-	width: 95%;
-
-
 	.SearchResult {
-	  width: 100%;
-	  display: flex;
 	  flex-direction: row;
 
 	  .SearchResult_Poster {
-		display: flex;
-		justify-content: center;
 		width: 30%;
-
-		img {
-		  object-fit: contain;
-		  width: 90%;
-		  height: 90%;
-		}
 	  }
 
 	  .SearchResult_Information {
 		width: 70%;
-		display: flex;
-		flex-direction: column;
+		height: 90%;
 
 		.SearchResult_Title {
-		  height: 15%;
-		  display: flex;
-		  text-decoration: underline;
+		  justify-content: initial;
+		  text-align: initial;
+
+		  h1 {
+			margin: 0;
+		  }
 		}
 
 		.SearchResult_Details {
-		  height: 80%;
-		  display: flex;
+		  height: 85%;
 		  flex-direction: row;
 
 		  h2 {
@@ -264,53 +211,31 @@ $white: #ffffff;
 
 		  .SearchResult_Details_List {
 			width: 50%;
+			height: 100%;
 			padding-right: 2vw;
 
 			ul {
-			  padding-left: 0;
-			  list-style-type: none;
 			  font-size: 1vw;
-			  line-height: 2;
 			}
 		  }
 
 
 		  .SearchResult_Details_Right {
 			width: 50%;
+			height: 100%;
 
 			.SearchResult_Details_Description {
-			  display: flex;
-			  flex-direction: column;
-
 			  p {
 				font-size: 1vw;
-
-				a {
-				  color: $red;
-				  cursor: pointer;
-				}
 			  }
 			}
 		  }
 
 		  .SearchResults_ButtonBox {
-			display: flex;
-
 
 			a {
-			  margin-top: 2vh;
-			  margin-left: 0;
 			  width: 40%;
 			  text-align: center;
-
-			  &:first-child {
-				border: 2px solid $grey;
-
-				&:hover {
-				  color: $black;
-				  background: $grey;
-				}
-			  }
 			}
 		  }
 		}
